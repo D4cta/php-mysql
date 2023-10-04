@@ -4,6 +4,7 @@
     ;   const MYSQL_NAME            =       'my_recipes'
     ;   const MYSQL_USER            =       'root'
     ;   const MYSQL_PASSWORD        =       'root'
+
     
     ;   try    {
                        $db = new PDO   (
@@ -23,9 +24,28 @@
                                            )
 
                }
+
             
     ;   catch(Exception $exception)    {
                                            die ('Erreur : '.$exception->getMessage()
                                                )
                                    ;   }
+
+
+        $sqlQuery                   =       'SELECT * FROM recipes'
+    ;   $recipesStatement           =       $mysqlClient                ->prepare($sqlQuery)
+    ;   $recipesStatement           ->      execute()
+    ;   $recipes                    =       $recipesStatement           ->fetchAll()
+    
+    // On affiche chaque recette une à une
+    ;   foreach ($recipes as $recipe)   {
+
+?>
+        
+            <p> <?php echo $recipe['author']
+    ;   ?>  </p>
+        
+
+<?php
+                                        }
 ?>
