@@ -1,3 +1,4 @@
+
 <?php
 
 // Déclaration du tableau des recettes
