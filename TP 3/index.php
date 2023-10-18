@@ -35,6 +35,14 @@
                 <h3><?php echo $recipe['title']; ?></h3>
                 <div><?php echo $recipe['recipe']; ?></div>
                 <i><?php echo displayAuthor($recipe['author'], $users); ?></i>
+                <table>
+                    <tr>
+                    <!--<a href=\"description.php?code=" . $row['idOffers'] . "\">" . $row['CompagnyName'] . "</a>-->
+                        <th><a href="update.php?id=<?php echo $recipe['recipe_id']?>">Editer l'article</a></th>
+                        <th>Supprimer l'article</th>
+                    </tr>
+                </table>
+                <br>
             </article>
         <?php endforeach ?>
     <?php endif; ?>
