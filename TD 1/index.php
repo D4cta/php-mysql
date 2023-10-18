@@ -1,5 +1,10 @@
+
+
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +28,8 @@ include_once('functions.php');
 <?php include_once('login.php'); ?>
 <h1>Site de Recettes !</h1>
 <!-- Si l'utilisateur existe, on affiche les recettes -->
-<?php if(isset($loggedUser)): ?>
+<?php if (isset($loggedUser)) : ?>
+<?php if (isset($_SESSION['LOGGED_USER'])) : ?>
 <?php foreach(get_recipes($recipes, $limit) as $recipe) : ?>
 <article>
 <h3><?php echo $recipe['title']; ?> </h>
