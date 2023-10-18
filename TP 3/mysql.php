@@ -5,6 +5,14 @@
     const MYSQL_USER = 'root';
     const MYSQL_PASSWORD = 'root';
     try {
+
+        $db = new PDO(
+            'mysql:host=localhost;dbname=my_recipes;charset=utf8',
+            'root',
+            'root',
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION],
+            );            
+
         $db = new PDO(
             sprintf('mysql:host=%s;dbname=%s;port=%s;charset=utf8',
             MYSQL_HOST, MYSQL_NAME, MYSQL_PORT),
@@ -17,4 +25,5 @@
     catch(Exception $exception) {
         die('Erreur : '.$exception->getMessage());
     }
+
 ?>
