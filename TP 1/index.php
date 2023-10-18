@@ -16,6 +16,7 @@
 
     <?php include_once('header.php'); ?>
         <h1>Site de recettes</h1>
+        
 
         <!-- inclusion des variables et fonctions -->
         <?php
