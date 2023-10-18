@@ -1,28 +1,41 @@
 <!-- index.php -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Notre première instruction : echo</title>
-        <meta charset="utf-8" />
-    </head>
-    <body>
-        <h2>Affichage de texte avec PHP</h2>
-        <p>
-            Cette ligne a été écrite entièrement en HTML.<br />
-            <?php
-                $mickael = ['Mickaël Andrieu', 'papa.maman@e.com', 'S3cr3t', 34];
-                $mathieu = ['Mathieu Nebra', 'mathieu.girolet@e.com', 'devine', 33];
-                $laurene = ['Laurène Castor', 'laura.brooks@e.com', 'P4ssw0rD', 28];
-                $users = [$mickael, $mathieu, $laurene];
-                echo $users[1][1] . " "; // "mathieu.nebra@exemple.com"
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de recettes - Page d'accueil</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+    >
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container">
 
-                echo "<br>";
+    <?php include_once('header.php'); ?>
+        <h1>Site de recettes</h1>
 
-                for ($line = 0; $line <= 2; $line++)
-                {
-                    echo $users[$line][0] . '<br />';
-                }
-            ?>
-        </p>
-    </body>
+        <!-- inclusion des variables et fonctions -->
+        <?php
+            include_once('variables.php');
+            include_once('functions.php');
+        ?>
+
+        <!-- inclusion de l'entête du site -->
+        <?php include_once('header.php'); ?>
+        
+        <?php foreach(getRecipes($recipes) as $recipe) : ?>
+            <article>
+                <h3><?php echo $recipe['title']; ?></h3>
+                <div><?php echo $recipe['recipe']; ?></div>
+                <i><?php echo displayAuthor($recipe['author'], $users); ?></i>
+            </article>
+        <?php endforeach ?>
+    </div>
+
+    <!-- inclusion du bas de page du site -->
+    <?php include_once('footer.php'); ?>
+</body>
 </html>
