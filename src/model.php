@@ -14,18 +14,18 @@
         // We retrieve the 5 last blog posts.
 
         $statement = $database->query(
-            "SELECT id, titre, contenu, DATE_FORMAT(date_creation,
-            '%d/%m/%Y à %Hh%imin%ss') AS date_creation_fr FROM billets
+            "SELECT id, title, content, DATE_FORMAT(date_creation,
+            '%d/%m/%Y à %Hh%imin%ss') AS date_creation_fr FROM posts
             ORDER BY date_creation DESC LIMIT 0, 5"
         );
 
         $posts = [];
         while (($row = $statement->fetch())) {
-            
+
             $post = [
-                'title' => $row['titre'],
+                'title' => $row['title'],
                 'french_creation_date' => $row['date_creation_fr'],
-                'content' => $row['contenu'],
+                'content' => $row['text'],
             ];
             
             $posts[] = $post;
@@ -33,4 +33,3 @@
         return $posts;
     }
 
-?>
