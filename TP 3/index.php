@@ -39,7 +39,7 @@
                     <tr>
                     <!--<a href=\"description.php?code=" . $row['idOffers'] . "\">" . $row['CompagnyName'] . "</a>-->
                         <th><a href="update.php?id=<?php echo $recipe['recipe_id']?>">Editer l'article</a></th>
-                        <th>Supprimer l'article</th>
+                        <th><a href="delete.php?id=<?php echo $recipe['recipe_id']?>">Supprimer l'article</a></th>
                     </tr>
                 </table>
                 <br>
