@@ -7,7 +7,16 @@ const RESULT_POSSIBILITIES = [RESULT_WINNER, RESULT_LOSER, RESULT_DRAW];
 
 
 class Player{
-    public int $level;
+    private $level;
+
+    public function getLevel(){
+        return $this->level;
+    }
+
+    public function setLevel($level){
+        $this->level = $level;
+    }
+
 
 }
 
@@ -19,33 +28,40 @@ class Encounter{
 
     }
 
-    public static function setNewLevel(int &$levelPlayerOne, int $againstLevelPlayerTwo, int $playerOneResult){
+    public static function setNewLevel(Player &$levelPlayerOne, Player $againstLevelPlayerTwo, int $playerOneResult){
         if (!in_array($playerOneResult, RESULT_POSSIBILITIES)) {
             trigger_error(sprintf('Invalid result. Expected %s',implode(' or ', RESULT_POSSIBILITIES)));
         }
     
-        $levelPlayerOne += (int) (32 * ($playerOneResult - probabilityAgainst($levelPlayerOne, $againstLevelPlayerTwo)));
+        $levelPlayerOne->setLevel( $levelPlayerOne->getLevel() + (int) (32 * ($playerOneResult - self::probabilityAgainst($levelPlayerOne->getLevel(), $againstLevelPlayerTwo->getLevel()))));
     
     }
 }
 
 
-$greg = 400;
-$jade = 800;
+$greg = new Player();
+$jade = new Player();
+
+$greg->setLevel(400);
+$jade->setLevel(800);
+
+
+$gregLevel = $greg->getLevel();
+$jadeLevel = $jade->getLevel();
 
 echo sprintf(
     'Greg à %.2f%% chance de gagner face a Jade',
-    probabilityAgainst($greg, $jade)*100
+    Encounter::probabilityAgainst($gregLevel, $jadeLevel)*100
 ).PHP_EOL;
 
 // Imaginons que greg l'emporte tout de même.
-setNewLevel($greg, $jade, RESULT_WINNER);
-setNewLevel($jade, $greg, RESULT_LOSER);
+Encounter::setNewLevel($greg, $jade, RESULT_WINNER);
+Encounter::setNewLevel($jade, $greg, RESULT_LOSER);
 
 echo sprintf(
     'les niveaux des joueurs ont évolués vers %s pour Greg et %s pour Jade',
-    $greg,
-    $jade
+    $greg->getLevel(),
+    $jade->getLevel()
 );
 
 exit(0);
