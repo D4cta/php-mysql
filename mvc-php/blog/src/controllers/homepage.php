@@ -1,11 +1,14 @@
 <?php
+    // src/controllers/homepage.php
+    
+    require_once('src/lib/database.php');
+    require_once('src/model/post.php');
 
-require_once('src/model/post.php');
+    function homepage(){
 
-function homepage()
-{
-    $postRepository = new PostRepository();
-    $posts = $postRepository->getPosts();
+        $postRepository = new PostRepository();
+        $postRepository->connection = new DatabaseConnection();
+        $posts = $postRepository->getPosts();
+        require('templates/homepage.php');
 
-    require('templates/homepage.php');
-}
+    }
