@@ -13,13 +13,13 @@ class Player{
 
 class Encounter{
 
-    public function probabilityAgainst(int $levelPlayerOne, int $againstLevelPlayerTwo){
+    public static function probabilityAgainst(int $levelPlayerOne, int $againstLevelPlayerTwo){
 
         return 1/(1+(10 ** (($againstLevelPlayerTwo - $levelPlayerOne)/400)));
 
     }
 
-    public function setNewLevel(int &$levelPlayerOne, int $againstLevelPlayerTwo, int $playerOneResult){
+    public static function setNewLevel(int &$levelPlayerOne, int $againstLevelPlayerTwo, int $playerOneResult){
         if (!in_array($playerOneResult, RESULT_POSSIBILITIES)) {
             trigger_error(sprintf('Invalid result. Expected %s',implode(' or ', RESULT_POSSIBILITIES)));
         }
