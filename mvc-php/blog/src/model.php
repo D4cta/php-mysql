@@ -40,7 +40,7 @@ function getPost($identifier) {
 
 function dbConnect()
 {
-    $database = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'blog', 'password');
+    $database = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', 'root');
 
     return $database;
 }
