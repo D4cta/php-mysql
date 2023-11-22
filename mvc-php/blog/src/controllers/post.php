@@ -1,13 +1,13 @@
 <?php
-    // src/controllers/post.php
 
-    require_once('src/model.php');
-    require_once('src/model/comment.php');
-    
-    function post(string $identifier){
+require_once('src/model/post.php');
+require_once('src/model/comment.php');
 
-        $post = getPost($identifier);
-        $comments = getComments($identifier);
-        require('templates/post.php');
+function post(string $identifier)
+{
+    $postRepository = new PostRepository();
+    $post = $postRepository->getPost($identifier);
+    $comments = getComments($identifier);
 
-    }
+    require('templates/post.php');
+}

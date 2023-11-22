@@ -1,13 +1,8 @@
-<?php
-    // index.php
+<?php $title = "Le blog de l'AVBN"; ?>
 
-    require_once('src/controllers/add_comment.php');
-    require_once('src/controllers/homepage.php');
-    require_once('src/controllers/post.php');
-    
-    try {
+<?php ob_start(); ?>
+<h1>Le super blog de l'AVBN !</h1>
+<p>Une erreur est survenue : <?= $errorMessage ?></p>
+<?php $content = ob_get_clean(); ?>
 
-    } catch (Exception $e) {
-        $errorMessage = $e->getMessage();
-        require('templates/error.php');
-    }
+<?php require('layout.php') ?>
