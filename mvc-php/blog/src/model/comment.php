@@ -1,5 +1,13 @@
 <?php
 
+class Comment
+{
+    public $author;
+    public $frenchCreationDate;
+    public $comment;
+    }
+
+
 function getComments(string $post)
 {
     $database = commentDbConnect();
@@ -9,11 +17,13 @@ function getComments(string $post)
     $statement->execute([$post]);
 
     $comments = [];
+
     while (($row = $statement->fetch())) {
+        $comment = new Comment();
         $comment = [
-            'author' => $row['author'],
-            'french_creation_date' => $row['french_creation_date'],
-            'comment' => $row['comment'],
+            $comment->author=> $row['author'],
+            $comment->frenchCreationDate => $row['french_creation_date'],
+            $comment->comment => $row['comment'],
         ];
 
         $comments[] = $comment;
