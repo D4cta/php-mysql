@@ -1,5 +1,8 @@
 <?php
 
+
+use FileInformation;
+
 class Uploader
 {
     private $name;
@@ -44,7 +47,10 @@ class Uploader
 
     public function getExtension()
     {
-        return pathinfo($this->name, PATHINFO_EXTENSION);
+        $fileInformation = new FileInformation();
+        return $fileInformation->getExtension($this->name);
+
+        //return pathinfo($this->name, PATHINFO_EXTENSION);
     }
 
     public function resize($origin, $destination, $width, $maxHeight)
