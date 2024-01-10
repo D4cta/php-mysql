@@ -1,7 +1,6 @@
 <?php
 
-public function getExtension()
-    {
+class FileInformation {
+    public function getExtension($name) { return pathinfo($name, PATHINFO_EXTENSION); }
 
-        //return pathinfo($this->name, PATHINFO_EXTENSION);
-    }
+}
